@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
       const res = await axiosData.get('/users/me');
       return res.data.user;
     } catch (error) {
-      return error
+     console.log(error)
     }},
    })
   const handleLogout = async() =>{
