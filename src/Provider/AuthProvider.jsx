@@ -6,7 +6,12 @@ const AuthProvider = ({ children }) => {
   const axiosData=useCallData()
    const { data:user, refetch } = useQuery({
     queryKey: ['user'],
-    queryFn:async () =>{const res = await axiosData.get('/users/me'); return res.data.user},
+    queryFn:async () =>{try {
+      const res = await axiosData.get('/users/me');
+      return res.data.user;
+    } catch (error) {
+      return error
+    }},
    })
   const handleLogout = async() =>{
       try {
