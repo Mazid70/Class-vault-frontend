@@ -8,6 +8,7 @@ import NotUser from '../../Components/NotUser/NotUser';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Pagination from '../../Components/Pagination/Pagination';
 import NoDataFound from '../../Components/NoData/NoDataFound';
+import Loader from '../../Components/Loader/Loader';
 
 const Notes = () => {
   const axiosData = useCallData();
@@ -48,11 +49,7 @@ if (!user || user.status === 'Pending' || user.status === 'Blocked') {
 
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center bg-[#1a1a1a] items-center h-screen">
-        <span className="loading loading-ring loading-xl text-error"></span>
-      </div>
-    );
+    return <Loader/>
   }
   return (
     <div className="min-h-screen bg-[#1a1a1a] px-5 py-10 relative pt-20">

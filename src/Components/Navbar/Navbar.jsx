@@ -10,7 +10,7 @@ const Navbar = () => {
    const { user, handleLogout} = useContext(AuthContext);
   
   return (
-    <nav className="h-16  backdrop-blur-xl fixed top-0 border-b-[0.1px] border-gray-800 z-50 w-full flex items-center">
+    <nav className=" h-16 xl:px-10 2xl:px-0 backdrop-blur-xl fixed top-0 border-b-[0.1px] border-gray-800 z-50 w-full flex items-center">
       <div className="w-7xl mx-auto text-white flex justify-between">
         <div className=" flex items-center">
           <img src={logo} alt="" className="h-10 w-10" />
@@ -44,7 +44,7 @@ const Navbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="h-10 w-10 cursor-pointer border rounded-full border-white/20"
+              className="h-10 w-10 xl:mr-36 2xl:mr-0  cursor-pointer border rounded-full border-white/20"
             >
               <img
                 src={user?.photoUrl}
@@ -54,7 +54,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="border border-white/20 dropdown-content bg-white/10 backdrop-blur-lg menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+              className="border border-white/20 dropdown-content bg-white/10 backdrop-blur-lg menu bg-base-100 rounded-box z-1 xl:w-40 w-52 p-2 shadow-sm"
             >
               <li>
                 <NavLink to="/profile">Profile</NavLink>

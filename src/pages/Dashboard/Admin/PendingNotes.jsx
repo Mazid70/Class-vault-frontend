@@ -11,6 +11,7 @@ import { useState } from 'react';
 import useCallData from '../../../customHooks/useCallData';
 import TimeAgo from '../../../Components/TimeAgo/TimeAgo';
 import { toast } from 'sonner';
+import Loader from '../../../Components/Loader/Loader';
 
 const PendingNotes = () => {
   const axiosData = useCallData();
@@ -72,9 +73,7 @@ const PendingNotes = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="text-gray-400 text-sm">Loading pending notes...</div>
-    );
+    return <Loader/>;
   }
 
   return (

@@ -39,7 +39,7 @@ const Hero = () => {
                   start={0}
                   end={40}
                   delay={1}
-                  enableScrollSpy
+                  
                   scrollSpyOnce
                 >
                   {({ countUpRef }) => (

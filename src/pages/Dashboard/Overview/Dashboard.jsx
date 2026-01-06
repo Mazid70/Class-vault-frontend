@@ -10,6 +10,7 @@ import {
 } from 'recharts';
 import { useQuery } from '@tanstack/react-query';
 import useCallData from '../../../customHooks/useCallData';
+import Loader from '../../../Components/Loader/Loader';
 
 
 const Dashboard = () => {
@@ -24,7 +25,7 @@ const Dashboard = () => {
   });
 
   if (isLoading) {
-    return <p className="text-gray-400">Loading dashboard...</p>;
+    return <Loader/>;
   }
 
   const {

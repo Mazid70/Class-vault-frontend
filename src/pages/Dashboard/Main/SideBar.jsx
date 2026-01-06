@@ -3,29 +3,37 @@ import {
   FaTachometerAlt,
   FaUsers,
   FaFileAlt,
-  FaBell,
   FaSignOutAlt,
+  FaHome,
 } from 'react-icons/fa';
+import { SiMaterialformkdocs } from 'react-icons/si';
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io';
 import { Link, useLocation } from 'react-router';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import { MdOutlineInsertPageBreak } from 'react-icons/md';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const location = useLocation();
-const {handleLogout}=useContext(AuthContext)
-  const menuItems = [
-    { title: 'Dashboard', icon: <FaTachometerAlt />, path: '/dashboard' },
-    { title: 'Users', icon: <FaUsers />, path: '/dashboard/users' },
-    { title: 'Notes', icon: <FaFileAlt />, path: '/dashboard/pending-notes' },
-    {
-      title: 'My Notes',
-      icon: <FaFileAlt />,
-      path: '/dashboard/mynotes',
-    },
-    
-  ];
 
+  const location = useLocation();
+const {handleLogout,user}=useContext(AuthContext)
+  const menuItemsUser = [
+    { title: 'Dashboard', icon: <FaTachometerAlt />, path: '/dashboard' },
+    { title: 'My Notes', icon: <FaFileAlt />, path: '/dashboard/mynotes' },
+    { title: 'Home', icon: <FaHome />, path: '/' },
+    { title: 'All Metarials', icon: <SiMaterialformkdocs />, path: '/notes' },
+    { title: 'Coverpage ',icon: <MdOutlineInsertPageBreak />,path: '/coverpage',},
+  ];
+  const menuItmesAdminCr = [
+    { title: 'Dashboard', icon: <FaTachometerAlt />, path: '/dashboard' },
+    { title: 'All users', icon: <FaUsers />, path: '/dashboard/users' },
+    {title: 'Pending Metarials',icon: <FaFileAlt />,path: '/dashboard/pending-notes',},
+    { title: 'My Metarials', icon: <FaFileAlt />, path: '/dashboard/mynotes' },
+    { title: 'Home', icon: <FaHome />, path: '/' },
+    { title: 'All Metarials', icon: <SiMaterialformkdocs />, path: '/notes' },
+    {title: 'Coverpage ',icon: <MdOutlineInsertPageBreak />,path: '/coverpage',},
+  ];
+const menuItems = user?.role === 'student' ? menuItemsUser : menuItmesAdminCr;
   return (
     <div
       className={`flex flex-col ${
@@ -55,7 +63,7 @@ const {handleLogout}=useContext(AuthContext)
 
       {/* Menu */}
       <ul className="flex flex-col mt-4 gap-3">
-        {menuItems.map((item, index) => {
+        { menuItems.map((item, index) => {
           const isActive = location.pathname === item.path;
           return (
             <li key={index} className="relative">

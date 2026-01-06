@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { FaTrash, FaCheck, FaBan } from 'react-icons/fa';
 import useCallData from '../../../customHooks/useCallData';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import Loader from '../../../Components/Loader/Loader';
 
 // Status and role colors
 const statusColors = {
@@ -77,7 +78,7 @@ const User = () => {
   };
 
   if (isLoading)
-    return <p className="text-white text-center mt-10">Loading users...</p>;
+    return <Loader/>
 
   return (
     <div className="p-6 w-full">

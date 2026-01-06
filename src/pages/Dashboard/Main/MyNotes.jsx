@@ -3,6 +3,7 @@ import { FaEdit, FaTrash, FaFileAlt } from 'react-icons/fa';
 import { useState } from 'react';
 import axios from 'axios';
 import useCallData from '../../../customHooks/useCallData';
+import Loader from '../../../Components/Loader/Loader';
 
 const MyNotes = () => {
   const axiosData = useCallData();
@@ -83,10 +84,10 @@ const MyNotes = () => {
     }
   };
 
-  if (isLoading) return <p className="text-gray-400">Loading...</p>;
+  if (isLoading) return<Loader/>
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 mt-10">
       <h2 className="text-2xl font-semibold text-white">My Notes</h2>
 
       {data.length === 0 && <p className="text-gray-400">No notes found</p>}
