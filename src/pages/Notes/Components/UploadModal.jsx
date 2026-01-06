@@ -4,6 +4,7 @@ import { FaFileAlt } from 'react-icons/fa';
 import BTN from '../../Home/components/BTN';
 import axios from 'axios';
 import useCallData from '../../../customHooks/useCallData';
+import { toast } from 'sonner';
 
 const UploadModal = ({ onClose, refetch }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -12,18 +13,29 @@ const UploadModal = ({ onClose, refetch }) => {
 
   const axiosData = useCallData();
 
+  const handleFileChange = e => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const handleClose = () => {
+    setSelectedFile(null);
+    setProgress(0);
+    onClose();
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
-    const form = e.target;
 
     if (!selectedFile) {
-      alert('Please select a file!');
+      toast.error('Please select a file!');
       return;
     }
 
     try {
       setUploading(true);
       setProgress(0);
+
+      const toastId = toast.loading('Uploading file...');
 
       /* ---------- Upload to Cloudinary ---------- */
       const formData = new FormData();
@@ -38,6 +50,7 @@ const UploadModal = ({ onClose, refetch }) => {
           onUploadProgress: e => {
             const percent = Math.round((e.loaded * 100) / e.total);
             setProgress(percent);
+            toast.loading(`Uploading ${percent}%`, { id: toastId });
           },
         }
       );
@@ -46,30 +59,23 @@ const UploadModal = ({ onClose, refetch }) => {
 
       /* ---------- Send metadata to backend ---------- */
       await axiosData.post('/notes/upload', {
-        title: form.title.value,
-        subject: form.subject.value,
+        title: e.target.title.value,
+        subject: e.target.subject.value,
         link: fileUrl,
       });
 
+      toast.success('File uploaded successfully!', { id: toastId });
       refetch();
       handleClose();
     } catch (err) {
       console.error('Upload failed:', err);
-      alert('Upload failed. Please try again.');
+      toast.error(err?.response?.data?.error || 'Upload failed', {
+        id: toastId,
+      });
     } finally {
       setUploading(false);
       setProgress(0);
     }
-  };
-
-  const handleFileChange = e => {
-    setSelectedFile(e.target.files[0]);
-  };
-
-  const handleClose = () => {
-    setSelectedFile(null);
-    setProgress(0);
-    onClose();
   };
 
   return (

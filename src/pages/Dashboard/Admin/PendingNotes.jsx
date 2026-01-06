@@ -10,6 +10,7 @@ import {
 import { useState } from 'react';
 import useCallData from '../../../customHooks/useCallData';
 import TimeAgo from '../../../Components/TimeAgo/TimeAgo';
+import { toast } from 'sonner';
 
 const PendingNotes = () => {
   const axiosData = useCallData();
@@ -37,8 +38,14 @@ const PendingNotes = () => {
 
   // 🔹 Approve
   const handleApprove = async id => {
-    await axiosData.patch(`/notes/${id}/approve`);
-    refetch();
+    try {
+      await axiosData.patch(`/notes/${id}/approve`);
+      toast.success('Note approved successfully!');
+      refetch();
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to approve note.');
+    }
   };
 
   // 🔹 Open delete modal
@@ -51,14 +58,17 @@ const PendingNotes = () => {
   const handleDelete = async () => {
     if (!reason.trim()) return;
 
-    await axiosData.delete(`/notes/${deleteId}`, {
-      data: { reason },
-    });
-
-    setOpenModal(false);
-    setReason('');
-    setDeleteId(null);
-    refetch();
+    try {
+      await axiosData.delete(`/notes/${deleteId}`, { data: { reason } });
+      toast.success('Note deleted successfully!');
+      setOpenModal(false);
+      setReason('');
+      setDeleteId(null);
+      refetch();
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to delete note.');
+    }
   };
 
   if (isLoading) {
@@ -124,7 +134,9 @@ const PendingNotes = () => {
 
               <div className="flex items-center gap-1">
                 <FaClock />
-                <span><TimeAgo date={note.createdAt}/></span>
+                <span>
+                  <TimeAgo date={note.createdAt} />
+                </span>
               </div>
             </div>
 

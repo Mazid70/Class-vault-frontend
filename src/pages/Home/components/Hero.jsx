@@ -35,7 +35,13 @@ const Hero = () => {
           <div className="2xl:flex-1  ">
             <div className="rounded-l h-[150px] w-[200px] flex flex-col justify-center items-center  rounded-3xl  backdrop-blur-[2px] border-l-0 border border-white/20 bg-gradient-to-l from-white/5 via-white/5 to-transparent">
               <h1 className="font-semibold text-5xl">
-                <CountUp start={0} end={40} delay={1}>
+                <CountUp
+                  start={0}
+                  end={40}
+                  delay={1}
+                  enableScrollSpy
+                  scrollSpyOnce
+                >
                   {({ countUpRef }) => (
                     <div>
                       <span ref={countUpRef} />+

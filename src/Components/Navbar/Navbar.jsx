@@ -7,9 +7,8 @@ import logo from '../../assets/logo.png'
 import Notification from './Notification';
 const Navbar = () => {
 
-   const { user, handleLogout } = useContext(AuthContext);
+   const { user, handleLogout} = useContext(AuthContext);
   
- 
   return (
     <nav className="h-16  backdrop-blur-xl fixed top-0 border-b-[0.1px] border-gray-800 z-50 w-full flex items-center">
       <div className="w-7xl mx-auto text-white flex justify-between">
