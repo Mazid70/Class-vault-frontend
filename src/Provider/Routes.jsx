@@ -13,6 +13,8 @@ import User from "../pages/Dashboard/Admin/User";
 import PendingNotes from "../pages/Dashboard/Admin/PendingNotes";
 import Dashboard from "../pages/Dashboard/Overview/Dashboard";
 import MyNotes from "../pages/Dashboard/Main/MyNotes";
+import AdminCr from "./AdminCr";
+import ValidUser from "./ValidUser";
 
 export const router = createBrowserRouter([
   {
@@ -31,13 +33,30 @@ export const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <DashBoard />,
+    element: (
+      <ValidUser>
+        <DashBoard />
+      </ValidUser>
+    ),
     children: [
-    
-      { path: '', element: <Dashboard/>},
-      { path: 'users', element: <User /> },
-      { path: 'pending-notes', element: <PendingNotes /> },
-      { path: 'mynotes', element: <MyNotes/> },
+      { path: '', element: <Dashboard /> },
+      {
+        path: 'users',
+        element: (
+          <AdminCr>
+            <User />
+          </AdminCr>
+        ),
+      },
+      {
+        path: 'pending-notes',
+        element: (
+          <AdminCr>
+            <PendingNotes />
+          </AdminCr>
+        ),
+      },
+      { path: 'mynotes', element: <MyNotes /> },
     ],
   },
 ]);
