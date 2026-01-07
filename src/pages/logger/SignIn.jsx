@@ -61,7 +61,7 @@ const SignIn = () => {
   return (
     <main className="h-screen flex bg-[#0C1019]">
       {/* LEFT */}
-      <div className="flex-1 flex justify-center items-center container mx-auto">
+      <div className="p-5 xl:p-0 flex-1 flex justify-center items-center container mx-auto">
         <div className="max-w-md w-full">
           <h1 className="font-bold text-sm text-white/60">
             It's Your Platform
@@ -136,7 +136,7 @@ const SignIn = () => {
 
       {/* RIGHT IMAGE */}
       <div
-        className="flex-1 relative bg-cover"
+        className="hidden xl:block flex-1 relative bg-cover"
         style={{ backgroundImage: `url(${bg})` }}
       >
         <div className="absolute inset-0 bg-gray-900/60" />

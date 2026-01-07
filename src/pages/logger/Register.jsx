@@ -60,7 +60,7 @@ const Register = () => {
   return (
     <main className="min-h-screen flex bg-[#0C1019]">
       {/* LEFT SIDE */}
-      <div className="flex-1 flex justify-center items-center container mx-auto">
+      <div className="p-5 xl:p-0 flex-1 flex justify-center items-center container mx-auto">
         <div className="max-w-lg w-full">
           <h1 className="font-bold text-sm text-white/60">START FOR FREE</h1>
           <h2 className="font-extrabold text-4xl text-white mt-2">
@@ -76,9 +76,9 @@ const Register = () => {
 
           <form className="mt-6 space-y-4" onSubmit={handleRegister}>
             {/* Name + ID */}
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* Name */}
-              <div className={labelCss}>
+              <div className={`w-full xl:w-[250px] ${labelCss}`}>
                 <input
                   required
                   type="text"
@@ -91,7 +91,7 @@ const Register = () => {
               </div>
 
               {/* ID */}
-              <div className={labelCss}>
+              <div className={`w-full xl:w-[250px] ${labelCss}`}>
                 <input
                   required
                   type="text"
@@ -155,7 +155,7 @@ const Register = () => {
 
       {/* RIGHT IMAGE */}
       <div
-        className="flex-1 relative bg-cover"
+        className="hidden xl:block flex-1 relative bg-cover"
         style={{ backgroundImage: `url(${bg})` }}
       >
         <div className="absolute inset-0 bg-gray-900/60" />

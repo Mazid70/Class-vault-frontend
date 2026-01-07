@@ -27,7 +27,7 @@ const ForgetPass = () => {
   };
 
   return (
-    <main className="h-screen fixed inset-0 z-50 bg-[#1a1a1a] flex justify-center items-center relative">
+    <main className="h-screen fixed inset-0 z-50 bg-[#1a1a1a] flex justify-center items-center relative overflow-hidden">
       {/* Background glows */}
       <div className="absolute left-1/2 top-1/2 h-[800px] w-[20px] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-purple-500 to-pink-400 blur-[80px] rotate-6"></div>
       <div className="absolute left-1/2 top-1/2 h-[900px] w-[20px] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-pink-400 to-purple-500 blur-[80px] rotate-90"></div>
