@@ -58,7 +58,7 @@ const Register = () => {
   };
 
   return (
-    <main className="min-h-screen flex bg-[#0C1019]">
+    <main className="h-screen flex bg-[#0C1019]">
       {/* LEFT SIDE */}
       <div className="p-5 xl:p-0 flex-1 flex justify-center items-center container mx-auto">
         <div className="max-w-lg w-full">

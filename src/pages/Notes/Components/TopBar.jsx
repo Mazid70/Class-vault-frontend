@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import UploadModal from './UploadModal';
 import { FaCloudUploadAlt } from 'react-icons/fa';
+import { MdSearch } from 'react-icons/md';
 
 const TopBar = ({ refetch, setSearch, resetPage }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -38,14 +39,14 @@ const TopBar = ({ refetch, setSearch, resetPage }) => {
 
         <button
           onClick={() => handleSearch(input)}
-          className="bg-indigo-500 px-4 py-2 rounded-full text-white font-medium hover:bg-indigo-600 transition"
+          className="bg-indigo-500 px-4 py-2   cursor-pointer rounded-full text-white font-medium hover:bg-indigo-600 transition"
         >
-          Search
+          <MdSearch />
         </button>
 
         <button
           onClick={handleReset}
-          className="bg-gray-500 px-4 py-2 rounded-full text-white font-medium hover:bg-gray-600 transition"
+          className="bg-gray-500 cursor-pointer px-4 py-2 rounded-full text-white font-medium hover:bg-gray-600 transition"
         >
           Reset
         </button>
@@ -61,9 +62,9 @@ const TopBar = ({ refetch, setSearch, resetPage }) => {
 
         <button
           onClick={() => setOpenModal(true)}
-          className="bg-gradient-to-r from-pink-400 to-purple-500 px-5 py-3 rounded-full text-white font-medium flex items-center gap-2 shadow-md hover:shadow-lg hover:scale-105 transform transition"
+          className="bg-gradient-to-r cursor-pointer from-pink-400 to-purple-500 px-5 py-3 rounded-full text-white font-medium flex items-center gap-2 shadow-md hover:shadow-lg hover:scale-105 transform transition"
         >
-          <FaCloudUploadAlt className="text-2xl" /> Upload
+          <FaCloudUploadAlt className="text-2xl" /> <span className='hidden xl:block'>Upload</span>
         </button>
 
         {openModal && (

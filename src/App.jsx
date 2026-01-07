@@ -9,12 +9,12 @@ import { Toaster } from 'sonner';
 
 const App = () => {
   return (
-    <>
+    <div className='bg-[#1a1a1a]'>
       {' '}
       <Navbar />
       <Outlet />
       <Toaster position="top-right" richColors />
-    </>
+    </div>
   );
 };
 

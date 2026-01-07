@@ -11,16 +11,16 @@ const Hero = () => {
       <section className="container mx-auto mt-20   flex justify-center flex-col items-center">
         {/* for text  */}
         <div className="flex gap-3 alegreya items-center">
-          <h1 className="font-bold text-5xl xl:text-8xl bg-gradient-to-r from-white  to-gray-600  text-transparent bg-clip-text">
+          <h1 className="font-bold text-[42px] xl:text-8xl bg-gradient-to-r from-white  to-gray-600  text-transparent bg-clip-text">
             {' '}
             Students
           </h1>
-          <h1 className="font-bold text-5xl xl:text-8xl bg-gradient-to-r from-gray-600  to-white  text-transparent bg-clip-text">
+          <h1 className="font-bold text-[42px] xl:text-8xl bg-gradient-to-r from-gray-600  to-white  text-transparent bg-clip-text">
             {' '}
             CSE 54(1)
           </h1>
         </div>
-        <h2 className="font-bold text-5xl  xl:text-8xl mt-4 alegreya ">
+        <h2 className="font-bold text-[42px]  xl:text-8xl mt-4 alegreya ">
           {' '}
           Of{' '}
           <span className="bg-gradient-to-r bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 text-transparent bg-clip-text ">

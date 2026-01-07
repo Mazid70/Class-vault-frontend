@@ -63,7 +63,7 @@ const Dashboard = () => {
   const COLORS = ['#22c55e', '#facc15'];
 
   return (
-    <div className="space-y-10 mt-10">
+    <div className="space-y-10 mt-10 w-full">
       {/* ================= CARDS ================= */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {cards.map((card, i) => (
@@ -78,7 +78,7 @@ const Dashboard = () => {
       </div>
 
       {/* ================= CHARTS ================= */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid  md:grid-cols-2 gap-6">
         {/* Pie */}
         <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-xl p-5">
           <h3 className="text-white font-medium mb-4">Notes Status</h3>

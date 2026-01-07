@@ -84,7 +84,7 @@ const Notification = () => {
       {/* 🔽 Panel */}
       {open && (
         <div
-          className="absolute right-0 mt-3 w-80 z-[999]"
+          className="absolute right-0 mt-3 w-56 xl:w-80 z-[999]"
           data-aos="fade-down"
           data-aos-duration="600"
         >

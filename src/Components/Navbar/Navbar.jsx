@@ -13,7 +13,7 @@ const Navbar = () => {
       <Link link="/notes" title="NOTES" />
       <Link link="/coverpage" title="COVER PAGE" />
       <Link link="/etc" title="OTHERS" />
-      {user && <Notification />}
+      
     </ul>
   );
 
@@ -47,12 +47,15 @@ const Navbar = () => {
             {link}
           </div>
         </div>
-        <div className=" flex -ml-28 xl:ml-0 items-center">
+        <div className=" flex items-center">
           <img src={logo} alt="" className="h-10 w-10" />
           <h1 className="font-bold">Class Vault</h1>
         </div>
         <div className="flex items-center gap-5">
-          <div className="hidden xl:block">{link}</div>
+          <div className="hidden xl:flex gap-5">
+            {link} {user && <Notification />}
+          </div>
+
           {!user && (
             <NavLink
               to="/signin"
@@ -64,6 +67,7 @@ const Navbar = () => {
             </NavLink>
           )}
         </div>
+        <div className='lg:hidden'>{user && <Notification />}</div>
         {user && (
           <div
             className="dropdown tooltip dropdown-hover tooltip-left  cursor-pointer"
