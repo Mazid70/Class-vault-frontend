@@ -47,8 +47,8 @@ const Navbar = () => {
             {link}
           </div>
         </div>
-        <div className=" flex items-center">
-          <img src={logo} alt="" className="h-10 w-10" />
+        <div className=" flex items-center gap-3">
+          <img src={logo} alt="" className="h-6 w-6" />
           <h1 className="font-bold">Class Vault</h1>
         </div>
         <div className="flex items-center gap-5">
@@ -59,7 +59,7 @@ const Navbar = () => {
           {!user && (
             <NavLink
               to="/signin"
-              className=" p-[1px] bg-gradient-to-r rounded-full  from-pink-400 via-purple-500 to-blue-500"
+              className="-mr-20 xl:mr-0 p-[1px] bg-gradient-to-r rounded-full  from-pink-400 via-purple-500 to-blue-500"
             >
               <button className="cursor-pointer relative bg-[#1A1A1A] rounded-full  px-3 py-1 font-bold text-white transition-colors duration-300 ease-linear bg- before:absolute before:top-1/2 before:left-1/2 before:-z-10 before:h-7 before:w-[60px] before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-gradient-to-r before:from-pink-500 before:to-purple-500 before:opacity-50 before:animate-ping hover:from-pink-600 hover:to-purple-600 hover:before:from-pink-600 hover:before:to-purple-600">
                 Sign in

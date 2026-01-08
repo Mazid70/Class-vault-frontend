@@ -1,10 +1,12 @@
 import React from 'react';
 import Hero from './components/Hero';
+import Services from './components/Services';
 
 const Home = () => {
   return (
-    <main className=" min-h-screen xl:p-10  overflow-hidden">
+    <main className="xl:p-10  overflow-hidden">
       <Hero />
+      <Services/>
     </main>
   );
 };
