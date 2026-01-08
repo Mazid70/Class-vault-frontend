@@ -4,7 +4,7 @@ import CountUp from 'react-countup';
 import hero from '../../../assets/hero.png'
 const Hero = () => {
   return (
-    <main className="h-screen relative p-5 xl:p-0">
+    <main className="min-h-screen relative p-5 xl:p-0">
       <div className=" bg-pink-400 h-[200px] w-[200px] rounded-full blur-[150px] absolute left-0 top-[30%] -translate-x-1/2"></div>
       <div className=" bg-purple-500 h-[200px] w-[200px] rounded-full blur-[150px] absolute right-0 top-[10%] translate-x-1/2"></div>
 
