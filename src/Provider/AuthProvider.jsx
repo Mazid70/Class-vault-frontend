@@ -1,28 +1,11 @@
-import { createContext, useEffect } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import axiosData from '../customHooks/useCallData';
+import { useQuery } from '@tanstack/react-query';
+import { createContext } from 'react';
+import useCallData from '../customHooks/useCallData';
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const queryClient = useQueryClient();
-
-  const fetchUser = async () => {
-    try {
-      const res = await axiosData.get('/users/me');
-      return res.data.user;
-    } catch (err) {
-      if (err.response?.status === 401) {
-        try {
-          await axiosData.post('/users/refresh');
-          const retryRes = await axiosData.get('/users/me');
-          return retryRes.data.user;
-        } catch {
-          return null;
-        }
-      } else throw err;
-    }
-  };
+  const axiosData = useCallData();
 
   const {
     data: user = null,
@@ -30,7 +13,10 @@ const AuthProvider = ({ children }) => {
     isLoading,
   } = useQuery({
     queryKey: ['user'],
-    queryFn: fetchUser,
+    queryFn: async () => {
+      const res = await axiosData.get('/users/me');
+      return res.data.user;
+    },
     retry: false,
     staleTime: 0,
   });
@@ -38,16 +24,11 @@ const AuthProvider = ({ children }) => {
   const handleLogout = async () => {
     try {
       await axiosData.post('/users/logout');
-      queryClient.removeQueries(['user']);
-      window.location.href = '/login';
+      window.location.reload()
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   };
-
-  useEffect(() => {
-    refetch();
-  }, []);
 
   return (
     <AuthContext.Provider value={{ user, refetch, isLoading, handleLogout }}>
