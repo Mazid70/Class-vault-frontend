@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
       // যদি 401 আসে → refresh token দিয়ে auto retry
       if (err.response?.status === 401) {
         try {
-          await axiosData.post('/refresh-token'); // refresh token route
+          await axiosData.post('/users/refresh-token'); // refresh token route
           const resRetry = await axiosData.get('/users/me'); // retry
           return resRetry.data.user;
         } catch (refreshErr) {
@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
     retry: false,
     staleTime: 0,
   });
-
+console.log(user)
   const handleLogout = async () => {
     try {
       await axiosData.post('/users/logout');
