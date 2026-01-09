@@ -1,34 +1,26 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { createContext, useEffect } from 'react';
-import useCallData from '../customHooks/useCallData';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import axiosData from '../customHooks/useCallData';
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const axiosData = useCallData();
   const queryClient = useQueryClient();
 
-  // ========================
-  // Fetch current user
-  // ========================
   const fetchUser = async () => {
     try {
       const res = await axiosData.get('/users/me');
       return res.data.user;
     } catch (err) {
-      // If 401, try refreshing token
       if (err.response?.status === 401) {
         try {
-          await axiosData.post('/users/refresh'); // refresh access token
-          const retryRes = await axiosData.get('/users/me'); // retry fetching user
+          await axiosData.post('/users/refresh');
+          const retryRes = await axiosData.get('/users/me');
           return retryRes.data.user;
-        } catch (refreshErr) {
-          console.log('Refresh failed:', refreshErr);
-          throw refreshErr;
+        } catch {
+          return null;
         }
-      } else {
-        throw err;
-      }
+      } else throw err;
     }
   };
 
@@ -43,20 +35,16 @@ const AuthProvider = ({ children }) => {
     staleTime: 0,
   });
 
-  // ========================
-  // Logout function
-  // ========================
   const handleLogout = async () => {
     try {
       await axiosData.post('/users/logout');
-      queryClient.removeQueries(['user']); // clear user cache
-      window.location.reload(); // full refresh
+      queryClient.removeQueries(['user']);
+      window.location.href = '/login';
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
-  // Optional: auto refetch user on mount
   useEffect(() => {
     refetch();
   }, []);
